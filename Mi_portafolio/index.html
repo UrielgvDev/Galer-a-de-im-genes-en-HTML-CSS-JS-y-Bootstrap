@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uriel Israel Guerra Vaca portafolio</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      transition: background-color 0.3s ease;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      background-color: #333;
+      /* Iniciar en modo oscuro */
+    }
+
+    .dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .container {
+      max-width: 1700px;
+      margin: 0 auto;
+      z-index: 1;
+      /* Para asegurarse de que el contenido esté por encima de las partículas */
+    }
+
+    .navbar {
+      background-color: #343a40 !important;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar-brand {
+      font-size: 24px;
+      cursor: pointer;
+      /* Cambiar cursor al pasar sobre el texto */
+      color: #fff;
+      /* Cambiar color del texto a blanco */
+    }
+
+    .navbar-brand:hover {
+      color: #ffc107;
+    }
+
+    .social-icons {
+      display: flex;
+      align-items: center;
+    }
+
+    .social-icons a {
+      color: #fff;
+      font-size: 20px;
+      margin-left: 10px;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      color: #ffc107;
+    }
+
+    .main-content {
+      padding: 20px;
+      color: #fff;
+      /* Cambiar color del texto a blanco */
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-top: 40px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      /* Asegurar que las partículas estén detrás del contenido */
+    }
+
+    .profile-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      width: 600px;
+      height: 250px;
+      margin: 40px auto;
+    }
+
+    .profile-image {
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      margin-right: 20px;
+    }
+
+    .profile-content {
+      flex: 1;
+      /* Para que ocupe todo el espacio disponible */
+    }
+
+    .profile-content h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #000;
+      /* Color del texto negro */
+    }
+
+    .profile-content p {
+      font-size: 16px;
+      color: #000;
+      /* Color del texto negro */
+    }
+
+    .social-icons {
+      display: flex;
+      align-items: center;
+    }
+
+    .social-icons a {
+      margin-right: 10px;
+      /* Espacio entre los iconos */
+    }
+
+    .social-icons a:last-child {
+      margin-right: 0;
+      /* Elimina el margen derecho del último icono */
+    }
+
+    .social-icons i {
+      font-size: 24px;
+      /* Tamaño de los iconos */
+      color: #333;
+      /* Color de los iconos */
+    }
+
+    .additional-card-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-gap: 20px;
+    }
+
+
+    .button-28 {
+      appearance: none;
+      background-color: transparent;
+      border: 2px solid #1A1A1A;
+      border-radius: 15px;
+      box-sizing: border-box;
+      color: #3B3B3B;
+      cursor: pointer;
+      display: inline-block;
+      font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 16px;
+      font-weight: 600;
+      line-height: normal;
+      margin: 0;
+      min-height: 30px;
+      min-width: 0;
+      outline: none;
+      padding: 5px 10px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      width: 40%;
+      will-change: transform;
+    }
+
+    .button-28:disabled {
+      pointer-events: none;
+    }
+
+    .button-28:hover {
+      color: #fff;
+      background-color: #1A1A1A;
+      box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+      transform: translateY(-2px);
+    }
+
+    .button-28:active {
+      box-shadow: none;
+      transform: translateY(0);
+    }
+
+    /* Estilos para el card personalizado */
+    .custom-card {
+      background-color: rgba(0, 0, 0, 0.3);
+      /* Fondo negro con transparencia */
+      border: none;
+      /* Sin borde */
+      border-radius: 10px;
+      /* Bordes redondeados */
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      /* Sombra */
+      transition: border-color 0.5s ease;
+      /* Transición para el color del borde */
+    }
+
+    .custom-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      /* Color del borde al pasar el mouse */
+    }
+
+    .button-85 {
+      padding: 0.6em 2em;
+      border: none;
+      outline: none;
+      color: rgb(255, 255, 255);
+      background: #111;
+      cursor: pointer;
+      position: relative;
+      z-index: 0;
+      border-radius: 10px;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .button-85:before {
+      content: "";
+      background: linear-gradient(45deg,
+          #ff0000,
+          #ff7300,
+          #fffb00,
+          #48ff00,
+          #00ffd5,
+          #002bff,
+          #7a00ff,
+          #ff00c8,
+          #ff0000);
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      background-size: 400%;
+      z-index: -1;
+      filter: blur(5px);
+      -webkit-filter: blur(5px);
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      animation: glowing-button-85 20s linear infinite;
+      transition: opacity 0.3s ease-in-out;
+      border-radius: 10px;
+    }
+
+    @keyframes glowing-button-85 {
+      0% {
+        background-position: 0 0;
+      }
+
+      50% {
+        background-position: 400% 0;
+      }
+
+      100% {
+        background-position: 0 0;
+      }
+    }
+
+    .button-85:after {
+      z-index: -1;
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #222;
+      left: 0;
+      top: 0;
+      border-radius: 10px;
+    }
+
+    .button-84 {
+      align-items: center;
+      background-color: initial;
+      background-image: linear-gradient(#464d55, #25292e);
+      border-radius: 8px;
+      border-width: 0;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .05);
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      flex-direction: column;
+      font-family: expo-brand-demi, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-size: 18px;
+      height: 40px;
+      justify-content: center;
+      line-height: 1;
+      margin: 0;
+      outline: none;
+      overflow: hidden;
+      padding: 0 30px;
+      text-align: center;
+      text-decoration: none;
+      transform: translate3d(0, 0, 0);
+      transition: all 150ms;
+      vertical-align: baseline;
+      white-space: nowrap;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .button-84:hover {
+      box-shadow: rgba(0, 1, 0, .2) 0 2px 8px;
+      opacity: .85;
+    }
+
+    .button-84:active {
+      outline: 0;
+    }
+
+    .button-84:focus {
+      box-shadow: rgba(0, 0, 0, .5) 0 0 0 3px;
+    }
+
+    .button-icon {
+      display: inline-block;
+      vertical-align: middle;
+      /* Para alinear verticalmente el icono con el texto */
+    }
+
+    /* Menu */
+    .contenedor-header {
+      background: #252627;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 99;
+    }
+
+    .contenedor-header header {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+
+    .contenedor-header header .logo a {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 36px;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .contenedor-header header ul {
+      display: flex;
+      list-style: none;
+    }
+
+    .contenedor-header header nav ul li a {
+      text-align: none;
+      color: #fff;
+      margin: 0 15px;
+      padding: 3px;
+      transition: .5s;
+      text-decoration: none;
+    }
+
+    .contenedor-header header nav ul li a:hover {
+      color: #5c5f5f;
+    }
+
+    .nav-responsive {
+      background-color: #242928;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: none;
+    }
+
+
+
+    /*Contacto */
+    .contacto {
+      font-family: 'Roboto Mono', monospace;
+      background-image: url(img/contact_bg.png);
+      background-color: #1e2326;
+      color: #fff;
+      padding: 40px 0;
+    }
+
+    .contacto .contenido-seccion {
+      max-width: 450px;
+      margin: auto;
+    }
+
+    .contacto h2 {
+      font-size: 30px;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .contacto .fila {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .contacto .col {
+      /* width: 48%; */
+      flex-grow: 1;
+      /* Reemplaza width con flex-grow para expandir el elemento */
+      position: relative;
+    }
+
+    .contacto .col input,
+    .contacto .col textarea {
+      display: block;
+      width: 100%;
+      padding: 18px;
+      border: none;
+      margin-bottom: 20px;
+      background-color: #252A2E;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .project-card {
+      background-color: #f5f5f5;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-card h3 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .project-card p {
+      color: #666;
+    }
+
+    .projects-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    #proyectos-title {
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .arriba i {
+      font-size: 2em;
+      /* Tamaño del icono */
+      color: white;
+      /* Color del icono */
+    }
+
+    .button-27 {
+      appearance: none;
+      background-color: #000000;
+      border: 2px solid #1A1A1A;
+      border-radius: 15px;
+      box-sizing: border-box;
+      color: #FFFFFF;
+      cursor: pointer;
+      display: inline-block;
+      font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 12px;
+      font-weight: 600;
+      line-height: normal;
+      margin: 0;
+      min-height: 30px;
+      min-width: 0;
+      outline: none;
+      padding: 15px 14px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      width: 20%;
+      will-change: transform;
+    }
+
+    .button-27:disabled {
+      pointer-events: none;
+    }
+
+    .button-27:hover {
+      box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+      transform: translateY(-2px);
+    }
+
+    .button-27:active {
+      box-shadow: none;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Seccion menu -->
+  <div class="contenedor-header">
+    <header>
+      <div class="logo">
+        <a href="#">Front-end Developer</a>
+      </div>
+      <nav id="nav">
+        <ul>
+          <li><a href="#inicio" onclick="seleccionar()">Inicio</a></li>
+          <li><a href="#proyectos" onclick="seleccionar()">Mis proyectos</a></li>
+          <li><a href="#contacto" onclick="seleccionar()">Contactame</a></li>
+          <li><a href="#habilidades" onclick="seleccionar()">Mis Habilidades</a></li>
+        </ul>
+      </nav>
+      <div class="nav-responsive" onclick="mostrarOcultarMenu()">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </header>
+  </div>
+
+  <div id="particles-js" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;"></div>
+ <!-- Seccion card principal -->
+  <div class="container mt-4">
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div class="main-content" id="inicio">
+      <center>
+        <h1>Bienvenido a mi portafolio</h1>
+        <p>¡Aquí puedes encontrar todos mis proyectos y habilidades como desarrollador frontend!</p>
+      </center>
+      <div class="profile-card">
+        <img class="profile-image" src="img/imagen1.jpeg" alt="Imagen de perfil">
+        <div class="profile-content">
+          <h2 id="animated-title">Front-endDeveloper</h2>
+          <p>¡Hola! 👋 Me llamo Uriel y soy un entusiasta sobre las tecnologías web, el cual desde mi educación media
+            superior despertó un fuerte interés en mí.</p>
+          <div class="social-icons">
+            <br>
+            <a href="https://www.facebook.com/uriel.guerra.1694/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://github.com/UrielgvDev" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/urielisraelguerravaca/" target="_blank"><i
+                class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/urielguerra_/" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+          <button class="button-28" onclick="descargarCV()">Descarga mi CV</button>
+        </div>
+      </div>
+      <br><br><br>
+      <div class="main-content" id="proyectos">
+        <center>
+          <h2 id="proyectos-title">Mis proyectos</h2>
+        </center>
+        <div class="projects-container">
+          <div class="project-card" id="project1">
+            <h3>Proyecto 1</h3>
+            <p>Descripción del Proyecto 1</p>
+          </div>
+          <div class="project-card" id="project2">
+            <h3>Proyecto 2</h3>
+            <p>Descripción del Proyecto 2</p>
+          </div>
+          <div class="project-card" id="project3">
+            <h3>Proyecto 3</h3>
+            <p>Descripción del Proyecto 3</p>
+          </div>
+          <div class="project-card" id="project4">
+            <h3>Proyecto 4</h3>
+            <p>Descripción del Proyecto 4</p>
+          </div>
+        </div>
+      </div>
+
+      <br><br>
+      <!-- Seccion contacto -->
+      <section id="contacto" class="contacto">
+        <div class="contenido-seccion">
+          <h2>Contactame</h2>
+          <div class="fila">
+            <!-- Formulario -->
+            <div class="col">
+              <form id="contactForm" method="POST" onsubmit="return validateForm()">
+                <input type="text" id="name" name="name" placeholder="Nombre">
+                <input type="email" id="email" name="email" placeholder="Correo electrónico">
+                <textarea id="message" name="message" cols="30" rows="10" placeholder="Envíame un mensaje"></textarea>
+                <center><button type="submit" class="button-27" role="button">Enviar :)</button></center>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <br>
+      <center>
+        <button class="button-85" onclick="descargarCV()">Descarga mi CV🙏🙏</button>
+      </center>
+
+      <!--Seccion conjunto de abilidades-->
+      <br><br>
+      <div class="main-content" id="habilidades">
+        <center>
+          <h2 id="animated-title">Mis habilidades</h2>
+          <i class="fab fa-git fa-2x"></i>
+          <i class="fab fa-html5 fa-2x"></i>
+          <i class="fab fa-css3-alt fa-2x"></i>
+          <i class="fab fa-js fa-2x"></i>
+          <i class="fab fa-bootstrap fa-2x"></i>
+          <i class="fab fa-sass fa-2x"></i>
+          <i class="fab fa-react fa-2x"></i>
+          <i class="fab fa-node fa-2x"></i>
+          <i class="fas fa-database fa-2x"></i>
+          <i class="fas fa-cloud fa-2x"></i>
+          <i class="fab fa-python fa-2x"></i>
+          <i class="fab fa-cuttlefish fa-2x"></i>
+          <i class="fab fa-windows fa-2x"></i>
+          <br><br>
+          <strong>
+            <h3><--Grasias por llegar asta aquí--></h3>
+          </strong>
+        </center>
+      </div>
+      <br>
+      <center>
+        <footer>
+          <a href="#inicio" class="arriba">
+            <i class="fa fa-angle-up"></i> 
+          </a>
+        </footer>
+      </center>
+
+      <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+      <script>
+        //particulas
+        particlesJS('particles-js', {
+          "particles": {
+            "number": {
+              "value": 80,
+              "density": {
+                "enable": true,
+                "value_area": 800
+              }
+            },
+            "color": {
+              "value": "#ffffff"
+            },
+            "shape": {
+              "type": "circle",
+              "stroke": {
+                "width": 0,
+                "color": "#000000"
+              },
+              "polygon": {
+                "nb_sides": 5
+              },
+              "image": {
+                "src": "img/github.svg",
+                "width": 100,
+                "height": 100
+              }
+            },
+            "opacity": {
+              "value": 0.5,
+              "random": false,
+              "anim": {
+                "enable": false,
+                "speed": 1,
+                "opacity_min": 0.1,
+                "sync": false
+              }
+            },
+            "size": {
+              "value": 3,
+              "random": true,
+              "anim": {
+                "enable": false,
+                "speed": 40,
+                "size_min": 0.1,
+                "sync": false
+              }
+            },
+            "line_linked": {
+              "enable": true,
+              "distance": 150,
+              "color": "#ffffff",
+              "opacity": 0.4,
+              "width": 1
+            },
+            "move": {
+              "enable": true,
+              "speed": 6,
+              "direction": "none",
+              "random": false,
+              "straight": false,
+              "out_mode": "out",
+              "bounce": false,
+              "attract": {
+                "enable": false,
+                "rotateX": 600,
+                "rotateY": 1200
+              }
+            }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+              "onhover": {
+                "enable": true,
+                "mode": "repulse"
+              },
+              "onclick": {
+                "enable": true,
+                "mode": "push"
+              },
+              "resize": true
+            },
+            "modes": {
+              "grab": {
+                "distance": 400,
+                "line_linked": {
+                  "opacity": 1
+                }
+              },
+              "bubble": {
+                "distance": 400,
+                "size": 40,
+                "duration": 2,
+                "opacity": 8,
+                "speed": 3
+              },
+              "repulse": {
+                "distance": 200
+              },
+              "push": {
+                "particles_nb": 4
+              },
+              "remove": {
+                "particles_nb": 2
+              }
+            }
+          },
+          "retina_detect": true
+        });
+
+
+        // Texto animado
+        const text = document.getElementById('animated-title');
+        const textString = text.innerText;
+        text.innerText = '';
+
+        let i = 0;
+
+        function animateText() {
+          if (i < textString.length) {
+            text.innerText += textString.charAt(i);
+            i++;
+            setTimeout(animateText, 100); // Velocidad de escritura
+          }
+        }
+
+        animateText();
+
+
+        function moveCard(cardId) {
+          const card = document.getElementById(cardId);
+          const wrapper = document.querySelector('.additional-card-wrapper');
+          if (card.classList.contains('draggable')) {
+            // Si el card es draggable, cambia su clase para que no sea draggable
+            card.classList.remove('draggable');
+          } else {
+            // Si el card no es draggable, cambia su clase para que sea draggable y lo mueve al final del contenedor
+            card.classList.add('draggable');
+            wrapper.appendChild(card);
+          }
+        }
+
+      </script>
+
+      <script>
+        //Menu
+        let menuVisible = false;
+        //Función que oculta o muestra el menu
+        function mostrarOcultarMenu() {
+          if (menuVisible) {
+            document.getElementById("nav").classList = "";
+            menuVisible = false;
+          } else {
+            document.getElementById("nav").classList = "responsive";
+            menuVisible = true;
+          }
+        }
+
+        function seleccionar() {
+          //oculto el menu una vez que selecciono una opcion
+          document.getElementById("nav").classList = "";
+          menuVisible = false;
+        }
+        //Funcion que aplica las animaciones de las habilidades
+        function efectoHabilidades() {
+          var skills = document.getElementById("skills");
+          var distancia_skills = window.innerHeight - skills.getBoundingClientRect().top;
+          if (distancia_skills >= 300) {
+            let habilidades = document.getElementsByClassName("progreso");
+            habilidades[0].classList.add("javascript");
+            habilidades[1].classList.add("htmlcss");
+            habilidades[2].classList.add("photoshop");
+            habilidades[3].classList.add("wordpress");
+            habilidades[4].classList.add("drupal");
+            habilidades[5].classList.add("comunicacion");
+            habilidades[6].classList.add("trabajo");
+            habilidades[7].classList.add("creatividad");
+            habilidades[8].classList.add("dedicacion");
+            habilidades[9].classList.add("proyect");
+          }
+        }
+
+
+        //detecto el scrolling para aplicar la animacion de la barra de habilidades
+        window.onscroll = function () {
+          efectoHabilidades();
+        }
+
+      </script>
+
+      <script>
+        // Scrip para el pdf
+        function descargarCV() {
+
+          var pdfURL = 'Doc/CV.pdf';
+
+          var nombreArchivo = 'CV.pdf';
+
+
+          var linkDescarga = document.createElement('a');
+          linkDescarga.href = pdfURL;
+          linkDescarga.download = nombreArchivo;
+
+
+          linkDescarga.click();
+        }
+      </script>
+
+      <script>
+        //validar formulario
+        function validateForm() {
+          var name = document.getElementById("name").value;
+          var email = document.getElementById("email").value;
+          var message = document.getElementById("message").value;
+
+          if (name == "" || email == "" || message == "") {
+            alert("Por favor, completa todos los campos del formulario.");
+            return false;
+          }
+
+          return true;
+        }
+      </script>
+
+
+
+
+
+</body>
+
+</html>

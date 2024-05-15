@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu galería de Imágenes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Font Awesome -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+            /* Agrega espacio en la parte superior del cuerpo */
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            /* Agrega espacio entre las imágenes */
+            margin-bottom: 20px;
+            /* Agrega margen en la parte inferior de la galería */
+        }
+
+        .gallery-item {
+            margin: 0;
+            /* Elimina el margen interior */
+            cursor: pointer;
+            width: 250px;
+            /* Anchura deseada */
+            height: 250px;
+            /* Altura deseada */
+            object-fit: cover;
+            /* Ajuste para que las imágenes cubran el espacio */
+            border-radius: 10px;
+            /* Agrega bordes redondeados */
+            transition: transform 0.3s ease;
+            /* Agrega una transición suave al hacer hover */
+            position: relative;
+            /* Permite posicionar los iconos */
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            /* Escala la imagen al hacer hover */
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            /* Ajusta el tamaño máximo de la imagen en el modal */
+            height: auto;
+        }
+
+        .navbar {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            /* Cambia el color de fondo del botón */
+            border-color: #007bff;
+            /* Cambia el color del borde del botón */
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            /* Cambia el color de fondo del botón al hacer hover */
+            border-color: #0056b3;
+            /* Cambia el color del borde del botón al hacer hover */
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            /* Aumenta el grosor de la fuente del enlace de la marca */
+        }
+
+        .nav-link {
+            color: #333;
+            /* Cambia el color del texto del enlace del menú */
+        }
+
+        .dropdown-menu {
+            background-color: #fff;
+            /* Cambia el color de fondo del menú desplegable */
+        }
+
+        .dropdown-item {
+            color: #333;
+            /* Cambia el color del texto de los elementos del menú desplegable */
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+            /* Cambia el color de fondo de los elementos del menú desplegable al hacer hover */
+        }
+
+        .navbar-toggler-icon {
+            color: #007bff;
+            /* Color del icono del botón de navegación */
+        }
+
+        /* Estilos para el botón */
+        #btnSelectImages {
+            background-color: #007bff;
+            /* Color de fondo del botón */
+            color: white;
+            /* Color del texto del botón */
+            border: none;
+            /* Elimina el borde del botón */
+            padding: 10px 20px;
+            /* Espaciado interno del botón */
+            border-radius: 5px;
+            /* Bordes redondeados */
+            cursor: pointer;
+            /* Cambia el cursor al pasar por encima */
+            transition: transform 0.2s ease;
+            /* Transición suave de la escala */
+        }
+
+        /* Estilos para el botón al pasar el cursor por encima */
+        #btnSelectImages:hover {
+            transform: scale(1.1);
+            /* Escala del botón al pasar el cursor por encima */
+        }
+
+        /* Estilos para el icono dentro del botón */
+        #btnSelectImages .bi {
+            margin-right: 5px;
+            /* Margen a la derecha del icono */
+        }
+
+        .arriba i {
+            font-size: 2em;
+            /* Tamaño del icono */
+            color: black;
+            /* Color del icono */
+        }
+
+        .dark-mode {
+            background-color: #222;
+            color: #fff;
+            
+            
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="container mt-5">
+        <h2 id="inicio" class="text-center mb-4">Tu galería de Imágenes</h2>
+        <i id="darkModeToggle" class="fas fa-moon"></i>
+        <center>
+            <button type="button" class="btn btn-primary mb-3" id="btnSelectImages">
+                <i class="bi bi-camera2"></i> Compartir Imágenes
+            </button>
+
+        </center>
+        <div class="gallery" id="imageGallery">
+            <!-- Imágenes se agregan aquí dinámicamente -->
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="" class="img-fluid" alt="Imagen">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <center>
+        <footer>
+            <a href="#inicio" class="arriba">
+                <i class="fa fa-angle-up"></i>
+            </a>
+        </footer>
+    </center>
+    <!-- Input para seleccionar imágenes -->
+    <input type="file" id="fileInput" multiple style="display: none;">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            // Función para cargar las imágenes seleccionadas
+            $("#btnSelectImages").click(function () {
+                $("#fileInput").click();
+            });
+
+            // Función para mostrar la imagen completa al hacer clic
+            function showFullImage(imageUrl) {
+                $('#imageModal img').attr('src', imageUrl);
+                $('#imageModal').modal('show');
+            }
+
+            // Función para agregar imágenes desde el archivo seleccionado
+            $("#fileInput").change(function () {
+                var files = $(this)[0].files;
+                for (var i = 0; i < files.length; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var imageId = 'image_' + Date.now(); // Generar un identificador único para la imagen
+                        var image = $('<img>').attr('src', e.target.result).addClass('gallery-item').attr('id', imageId);
+                        var deleteIcon = $('<i>').addClass('fas fa-trash-alt delete-icon').click(function () {
+                            $('#' + imageId).parent().remove(); // Eliminar el contenedor de la imagen y el icono de basura
+                            removeImageFromLocalStorage(imageId); // Eliminar la imagen del almacenamiento local
+                        });
+                        image.click(function () {
+                            showFullImage(e.target.result);
+                        });
+                        $('#imageGallery').append($('<div>').addClass('gallery-item').append(image, deleteIcon));
+                        saveImageToLocalStorage(imageId, e.target.result); // Guardar la imagen en el almacenamiento local
+                    }
+                    reader.readAsDataURL(files[i]);
+                }
+            });
+
+            // Asignar la función para las imágenes cargadas estáticamente
+            $('#imageGallery').on('click', '.gallery-item', function () {
+                var imageUrl = $(this).find('img').attr('src');
+                showFullImage(imageUrl);
+            });
+
+            updateGalleryFromLocalStorage();
+
+            window.addEventListener('beforeunload', function () {
+                localStorage.setItem('galleryImages', JSON.stringify(galleryImages));
+            });
+        });
+
+        // Obtener el contenedor de la galería
+        var galleryContainer = document.getElementById('imageGallery');
+
+        // URLs de las imágenes (cambia estas URL por las imágenes que desees)
+        var imageUrls = [
+            'img/img_principal/imagen1.jpg',
+            'img/img_principal/imagen2.jpg',
+            'img/img_principal/imagen3.png',
+            'img/img_principal/imagen4.png',
+            'img/img_principal/imagen6.jpg',
+            'img/img_principal/imagen7.jpg',
+            'img/img_principal/imagen8.png',
+            'img/img_principal/imagen9.png',
+            'img/img_principal/imagen10.jpg',
+            'img/img_principal/imagen11.jpg',
+            'img/img_principal/imagen12.jpg',
+            'img/img_principal/imagen13.jpg',
+        ];
+
+        // Recorrer la lista de URLs de imágenes
+        imageUrls.forEach(function (url) {
+            // Crear un elemento img
+            var imgElement = document.createElement('img');
+
+            // Establecer la URL de la imagen
+            imgElement.src = url;
+
+            // Agregar la clase para darle estilo a la imagen y la clase para la animación
+            imgElement.classList.add('gallery-item');
+            imgElement.classList.add('animate-on-click'); // Agrega la clase para la animación
+
+            // Agregar un evento de clic a la imagen para mostrarla en grande
+            imgElement.addEventListener('click', function () {
+                showFullImage(url); // Llama a la función para mostrar la imagen en grande
+            });
+
+            // Agregar la imagen al contenedor de la galería
+            galleryContainer.appendChild(imgElement);
+        });
+
+        // Función para mostrar la imagen en grande
+        function showFullImage(imageUrl) {
+            // Puedes implementar aquí la lógica para mostrar la imagen en un modal o en un contenedor dedicado
+            // Por ejemplo, puedes usar un modal de Bootstrap o crear un contenedor flotante con JavaScript
+            // A continuación, se muestra un ejemplo simple de cómo abrir un modal de Bootstrap con la imagen
+
+            // Obtener el modal
+            var modal = document.getElementById('imageModal');
+
+            // Obtener el elemento de la imagen en el modal
+            var modalImage = modal.querySelector('img');
+
+            // Establecer la URL de la imagen en el modal
+            modalImage.src = imageUrl;
+
+            // Mostrar el modal
+            $(modal).modal('show');
+        }
+    </script>
+<script>
+    $(document).ready(function () {
+        $('#darkModeToggle').click(function () {
+            $('body').toggleClass('dark-mode');
+            toggleDarkModeIcon(); // Llama a la función para alternar el icono de modo oscuro
+        });
+
+        // Función para alternar el icono de modo oscuro
+        function toggleDarkModeIcon() {
+            var icon = $('#darkModeToggle'); // Obtén el icono
+            if (icon.hasClass('fa-moon')) {
+                icon.removeClass('fa-moon').addClass('fa-sun');
+            } else {
+                icon.removeClass('fa-sun').addClass('fa-moon');
+            }
+        }
+    });
+</script>
+</body>
+
+</html>
